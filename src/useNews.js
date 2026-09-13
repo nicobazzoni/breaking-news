@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { fetchStories, STORY_DURATION } from './feed'
 
 export function useNews() {
-  const [state, setState] = useState({ stories: [], index: 0, cycle: 0, loading: true, error: '', updated: null })
+  const [state, setState] = useState({ stories: [], index: 0, cycle: 0, loading: true, error: '' })
   const [paused, setPaused] = useState(false)
   const [retry, setRetry] = useState(0)
 
@@ -11,7 +11,7 @@ export function useNews() {
     let active = true
     const timeout = setTimeout(() => controller.abort(), 15000)
     fetchStories(controller.signal).then(stories => {
-      if (active) setState(previous => ({ ...previous, stories, index: 0, loading: false, error: '', updated: new Date() }))
+      if (active) setState(previous => ({ ...previous, stories, index: 0, loading: false, error: '' }))
     }).catch(() => {
       if (active) setState(previous => ({ ...previous, index: 0, loading: false, error: 'Feed unavailable. Retrying automatically.' }))
     }).finally(() => clearTimeout(timeout))

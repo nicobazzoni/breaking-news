@@ -8,7 +8,7 @@ function Clock() {
     const timer = setInterval(() => setNow(new Date()), 1000)
     return () => clearInterval(timer)
   }, [])
-  return <div className="clock-block text-right">
+  return <div className="text-right">
     <div className="clock">{now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</div>
     <div className="date">{now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
   </div>

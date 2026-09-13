@@ -17,3 +17,7 @@ The feed currently supplies CORS headers allowing browser access, including on i
 Designed for a full-screen landscape display with a responsive mobile layout. Browser background-tab throttling can delay rotation; keep the signage page foregrounded. Confirm X2O's browser version, display resolution, and network access with Wes before deployment.
 
 Vite 6 is used for compatibility with the workspace's Node 20.18 installation. Tailwind is integrated with its official Vite plugin: https://tailwindcss.com/docs/installation/using-vite.
+
+## Image assets
+
+The four source images live in `src/public/`: the square Fox logo, headline highlight, dark blue background, and `diagnol.png`. `App.jsx` imports the logo and `index.css` references the backgrounds. Vite generates copies in `dist/assets/` during a build; edit the source files, not those generated copies. The unused horizontal logo and rounded white backplate have been removed.
