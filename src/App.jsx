@@ -24,7 +24,7 @@ function StoryImage({ story }) {
   return <div className="visual">
     {story.image && !failed
       ? <img src={story.image} alt="" onError={() => setFailed(true)} />
-      : <div className="image-fallback"><span>FOX NEWS</span><p>Latest headlines</p></div>}
+      : <div className="image-fallback"><img src={foxLogo} alt="Fox News" /></div>}
   </div>
 }
 
