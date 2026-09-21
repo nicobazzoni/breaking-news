@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react'
 import { fetchStories, STORY_DURATION } from './feed'
 
+// App calls this hook to get the stories, current story index, and playback controls.
+// State changes here tell React to render App again with the latest values.
 export function useNews() {
   const [state, setState] = useState({ stories: [], index: 0, cycle: 0, loading: true, error: '' })
   const [paused, setPaused] = useState(false)
   const [retry, setRetry] = useState(0)
 
+  // EFFECT 1: FETCH THE WHOLE FEED.
+  // Runs after the first render, then whenever cycle or retry changes.
+  // fetchStories downloads and parses the XML; we save its array in state.
+  // A successful fetch starts at story 0. A failed refresh keeps the previous stories.
+  // Cleanup cancels the old request; the timeout cancels requests after 15 seconds.
   useEffect(() => {
     const controller = new AbortController()
     let active = true
@@ -18,6 +25,11 @@ export function useNews() {
     return () => { active = false; clearTimeout(timeout); controller.abort() }
   }, [state.cycle, retry])
 
+  // EFFECT 2: ADVANCE THROUGH THE STORIES ALREADY DOWNLOADED.
+  // When playback is ready, wait 7 seconds and increase index so App shows the next story.
+  // After the last story, increase cycle: that triggers Effect 1 to fetch again.
+  // With no stories, wait 15 seconds and increase retry to trigger Effect 1 instead.
+  // Loading or pausing stops scheduling; cleanup removes the previous timer.
   useEffect(() => {
     if (state.loading || paused) return
     const timer = setTimeout(() => {

@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react'
 import { useNews } from './useNews'
 import foxLogo from './public/100X100_LOGO_FNC_KEYABLE.png'
 
+// Display local time and date. This component updates its own state every second,
+// independently of the seven-second news slideshow.
 function Clock() {
   const [now, setNow] = useState(new Date())
+  // Start the clock interval on mount and clear it when this component is removed.
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000)
     return () => clearInterval(timer)
@@ -14,6 +17,8 @@ function Clock() {
   </div>
 }
 
+// Display the current story image, or a placeholder if it is missing or fails.
+// The article key changes for each story, resetting this component's failed state.
 function StoryImage({ story }) {
   const [failed, setFailed] = useState(false)
   return <div className="visual">
@@ -23,6 +28,9 @@ function StoryImage({ story }) {
   </div>
 }
 
+// main.jsx renders this page. Ask useNews for data and select stories[index].
+// React renders again when the hook updates state, revealing the selected story.
+// This component builds the layout; useNews handles fetching and story timing.
 export default function App() {
   const { stories, index, cycle, loading, error, paused, togglePause } = useNews()
   const story = stories[index]
