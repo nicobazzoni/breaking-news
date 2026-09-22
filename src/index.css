@@ -112,16 +112,19 @@ h1 {
 @keyframes countdown { to { stroke-dashoffset: 0; } }
 @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 760px) {
-  .news-shell { height: min(100svh, 56.25vw); min-height: 0; padding: 1.3vw 0 2.2vw; gap: .83vw; }
-  .headline-frame { height: 10.36vw; }
-  .headline-banner { height: 100%; gap: 12px; padding: .35vw 1vw; }
-  .fox-logo { width: 65px; }
-  .story { padding: 1.4vw 3vw 1vw; }
-  .visual { width: 51%; aspect-ratio: 16 / 9; height: auto; }
-  .description { margin-top: 1.6vw; }
-  .playback { flex-wrap: wrap; padding: 1.6vw 1.6vw; }
-  .playback-controls { margin-left: auto; }
-  .feed-status { max-width: 100%; }
+  .news-shell { height: auto; min-height: 100svh; padding: 10px 0 16px; gap: 10px; }
+  .headline-frame { height: auto; min-height: 104px; padding-inline: 8px; }
+  .headline-banner { min-height: 96px; gap: 10px; padding: 10px 8px; }
+  .fox-logo { width: 58px; }
+  h1 { font-size: clamp(19px, 5.8vw, 28px); line-height: 1.08; }
+  .content-frame { flex: none; min-height: 0; }
+  .content-panel { min-height: 0; }
+  .story { flex: none; padding: 18px 14px 8px; }
+  .visual { width: 100%; aspect-ratio: 16 / 9; height: auto; }
+  .description { margin-top: 16px; padding: 0 4px; font-size: clamp(17px, 4.5vw, 24px); line-height: 1.3; }
+  .playback { align-items: flex-start; flex-direction: column; gap: 10px; padding: 14px; }
+  .playback-controls { width: 100%; margin-left: 0; }
+  .feed-status { max-width: 100%; line-height: 1.3; }
 }
 @media (prefers-reduced-motion: reduce) { .story { animation: none; } }
 /* Original square logo: no added background, cropping, or decorative border. */
