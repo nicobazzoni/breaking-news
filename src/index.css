@@ -21,7 +21,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid white; outline-offset
   display: flex;
   flex-direction: column;
   gap: .83vw;
-  background: url('./public/diagnol.png') center / cover no-repeat;
+  background: #000 url('./public/diagnol.png') center top / 100% 50% no-repeat;
 }
 .headline-frame {
   height: 10.36vw;
