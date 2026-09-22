@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNews } from './useNews'
-import foxLogo from './public/100X100_LOGO_FNC_KEYABLE.png'
+import foxLogo from './public/fox-news-logo-reference.jpg'
 
 
 
